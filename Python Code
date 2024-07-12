@@ -1,0 +1,52 @@
+!pip install gTTS
+
+!pip install gTTS
+
+from gtts import gTTS
+import os
+from IPython.display import Audio
+
+# Define the text you want to convert to speech
+text = "Hello, this is a sample text-to-speech conversion using gTTS in Python."
+
+# Create a gTTS object
+tts = gTTS(text=text, lang='en', slow=False)
+
+# Save the audio file
+tts.save("sample.mp3")
+
+# Play the audio file
+Audio("sample.mp3", autoplay=True)
+
+!pip install gTTS python-docx
+
+from gtts import gTTS
+import os
+from IPython.display import Audio
+from docx import Document
+from google.colab import files
+
+# Upload the Word file
+uploaded = files.upload()
+
+# Extract the file name from the uploaded files
+file_name = list(uploaded.keys())[0]
+
+# Load the document
+doc = Document(file_name)
+
+# Extract text from the document
+full_text = []
+for para in doc.paragraphs:
+    full_text.append(para.text)
+text = '\n'.join(full_text)
+print(text)
+
+# Create a gTTS object
+tts = gTTS(text=text, lang='en', slow=False)
+
+# Save the audio file
+tts.save("sample.mp3")
+
+# Play the audio file
+Audio("sample.mp3", autoplay=True)
